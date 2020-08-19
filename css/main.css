@@ -15,4 +15,6 @@ html{
     display: block;
     width: 800px;
     height: 800px;
+    background-color: white;
+    margin: 50px auto 50px;
 }
