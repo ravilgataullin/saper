@@ -168,6 +168,19 @@ function Field(side, bombs, canvas){
         this.sounds.win.play();
         this.gameOver = true;
     };
+    this.isWin = () =>{
+        
+        for(let i = 0; i < side; i++){
+            for(let j = 0; j < side ; j++){
+                let cell = this.fieldArray[i][j];
+                if(cell.state == 9) continue;
+
+                if(!cell.isChecked) return false;
+
+            }
+        }
+        return true;
+    }
 
     this.gameOver = () =>{
         for(let i of this.fieldArray){
@@ -176,7 +189,7 @@ function Field(side, bombs, canvas){
             }
         }
         this.sounds.loose.play();
-        this.gameOver = true;
+        this.isGameOver = true;
     };
 
     this.checkCell = (i, j) => {
@@ -228,6 +241,7 @@ function Field(side, bombs, canvas){
         
 
         this.checkCell(iCord, jCord);
+        if(this.isWin() && !this.isGameOver) this.win();
 
         
         this.drawField();
